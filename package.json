@@ -1,0 +1,26 @@
+{
+  "name": "tennis",
+  "version": "1.0.0",
+  "description": "## To run: node -e 'require(\"./src/cli\").main(\"./test/resources/full_tournament.txt\")'",
+  "main": "./src/cli.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brettacarr/tennis.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brettacarr/tennis/issues"
+  },
+  "homepage": "https://github.com/brettacarr/tennis#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3",
+    "mocha": "^8.2.1"
+  }
+}
