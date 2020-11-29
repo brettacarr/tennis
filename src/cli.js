@@ -37,7 +37,7 @@ var main = async (fileName) => {
         inquirer.prompt([{
             type: 'input',
             name: 'player',
-            message: 'Which player? (E.g A, B)'
+            message: 'Which player? (E.g Person A, Person B)'
         }]).then((answers) => {
             console.log(`Chosen player: ${answers.player}`);
             let playerResults = tournament.playerResults(answers.player);
