@@ -50,9 +50,13 @@ var main = async (fileName) => {
         inquirer.prompt([{
             type: 'input',
             name: 'match',
-            message: 'Which match? (E.g 1, 2)'
+            message: 'Which match? (E.g 01, 02)'
         }]).then((answers) => {
-            console.log(`Chosen match: ${answers.match}`);
+            let results = tournament.matchResults(answers.match);
+            console.log(`Chosen match: ${answers.match}\n` +
+                `${results.winner} defeated ${results.loser}\n` +
+                `${results.winningScore} sets to ${results.losingScore}`
+            );
             resolve();
         })
     }

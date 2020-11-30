@@ -42,10 +42,12 @@ describe('CLI', () => {
     })
 
     it('should prompt for match', async () => {
-        inquirer.prompt = ([]) => Promise.resolve({command: 'Query a match', match: '1'})
+        inquirer.prompt = ([]) => Promise.resolve({command: 'Query a match', match: '01'})
         await cli.main('./test/resources/full_tournament.txt');
 
-        expect(spy.calledWith('Chosen match: 1')).to.equal(true);
+        expect(spy.calledWith(  'Chosen match: 01\n' +
+                                'Person A defeated Person B\n' +
+                                '2 sets to 0')).to.equal(true);
 
     })
 

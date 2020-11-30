@@ -9,30 +9,72 @@ module.exports = function() {
         this.games = games;
         this.sets = [];
 
-        this.gamesWonByPlayer1 = [];
-        this.gamesWonByPlayer2 = [];
+        this.gamesWonByPlayer1 = 0;
+        this.gamesWonByPlayer2 = 0;
+        this.setsWonByPlayer1 = 0;
+        this.setsWonByPlayer2 = 0;
+
+        this.winner = '';
+        this.loser = '';
+        this.winningScore = 0;
+        this.losingScore = 0;
 
         this.init = () => {
 
-            let player1Points = 0;
-            let player2Points = 0;
+            this.initSets();
+            this.calculateMatchResults();
+        }
+
+        this.initSets = () => {
+
+            let player1SetPoints = 0;
+            let player2SetPoints = 0;
 
             games.forEach(game => {
-                if (game.winningPlayer === 'PLAYER1'){
-
-                    this.gamesWonByPlayer1.push(game);
-                    player1Points++;
+                if (game.winningPlayer === 'PLAYER1') {
+                    player1SetPoints++;
+                    this.gamesWonByPlayer1++;
                 }
                 else {
-                    player2Points++;
-                    this.gamesWonByPlayer2.push(game);
+                    player2SetPoints++;
+                    this.gamesWonByPlayer2++;
                 }
-                if (player1Points == 6 ||
-                player2Points == 6) {
-                    this.sets.push(new MatchSet(player1Points, player2Points));
+
+                if (this.hasPlayerWonSet(player1SetPoints, player2SetPoints)) {
+
+                    let set = new MatchSet(player1SetPoints, player2SetPoints)
+                    this.sets.push(set);
+                    if (set.winner == 'PLAYER1') {
+                        this.setsWonByPlayer1++;
+                    }
+                    else {
+                        this.setsWonByPlayer2++;
+                    }
+                    player1SetPoints = 0;
+                    player2SetPoints = 0;
                 }
 
             })
+        }
+
+        this.hasPlayerWonSet = (player1SetPoints, player2SetPoints) => {
+            return player1SetPoints == 6 ||
+                player2SetPoints == 6;
+        }
+
+        this.calculateMatchResults = () => {
+            if (this.setsWonByPlayer1 > this.setsWonByPlayer2) {
+                this.winningScore = this.setsWonByPlayer1;
+                this.losingScore = this.setsWonByPlayer2;
+                this.winner = this.player1Name;
+                this.loser = this.player2Name;
+            }
+            else {
+                this.winningScore = this.setsWonByPlayer2;
+                this.losingScore = this.setsWonByPlayer1;
+                this.winner = this.player2Name;
+                this.loser = this.player1Name;
+            }
         }
 
 
