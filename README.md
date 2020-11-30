@@ -15,4 +15,4 @@ Still some work to be done to improve design. The Match is doing a lot of the he
 
 Tries to encapsulate all tennis based logic into the domain objects however to process the data file into the domain model, some knowledge needed to be known by the file processor E.g splitting into games. I wanted to keep the domain model isolated from how the data was being stored.
 
-No all scenarios have been completed. 
+Not all scenarios have been completed. 
